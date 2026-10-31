@@ -11,5 +11,9 @@ export function formatBytes(bytes, options = {}) {
     value = value / base;
     index += 1;
   }
-  return `${value.toFixed(decimals)} ${units[index]}`;
+  const number = value
+    .toFixed(decimals)
+    .replace(/(\.\d*?)0+$/, "$1")
+    .replace(/\.$/, "");
+  return `${number} ${units[index]}`;
 }
